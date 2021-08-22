@@ -1,0 +1,34 @@
+<div class="headermain">
+    <div class="left-icon_div" (click)="showOrHideMenu()">
+      <img
+        class="arrow-left_img"
+        [src]="showMenu ? '../../assets/images/header/arrow left icon.png':'../../assets/images/header/nav close icon.png'"
+      />
+    </div>
+    <div class="header_right">
+      <div class="location">
+        <img src="../assets/Da Otto Icon.png" />
+        <select class="select" name="location">
+          <option value="Da Otto" default>Da Otto</option>
+        </select>
+      </div>
+  
+      <div class="searchdiv">
+        <input
+        id="sampless"
+          class=" form-control"
+          type="text"
+          name="searchedData"
+          placeholder="Search for Restaurants (Press Enter to Search)"
+          (keydown.enter)="save($event)"
+        />
+        <button (click)="openFiter()"class="Filter">
+          <img class="buttonimg" src="../assets/sort2.png" />
+        </button>
+        <button class="cart">
+          <img class="buttonimg" src="../assets/cart.png" />
+          <div class="itemcount"></div>
+        </button>
+      </div>
+    </div>
+  </div>

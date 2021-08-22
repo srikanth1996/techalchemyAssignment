@@ -1,0 +1,28 @@
+<div class="parent" *ngIf="restaurantDetail!=null">
+    <div class="child">
+        <h1 class="header"> {{restaurantDetail.restaurantName}}</h1>
+         <p class="desc"> {{restaurantDetail.restaurantDescription}}</p>
+        <span class="opening"><img class="restimage"src="./../assets/time.png"> <div style="display: flex;flex-direction: column;"> <span style="display: block;" *ngFor="let i of items;let ind=index;let la=last">{{ind === la? i : (i+',')}}</span></div> </span><!--{{restaurantDetail.openingHours}}--> <!--openingHours-->
+        <span class="contactnumber"><img class="restimage"src="./../assets/phone.png">{{restaurantDetail.contactNumber}}</span>
+        <span class="website"><img class="restimage" src="./../assets/web.png">{{restaurantDetail.websiteUrl}}</span>
+    </div>
+    <div class="child1">
+        <img [src]="restaurantDetail.restaurantImage"> 
+    
+    </div>
+</div>
+ <hr>
+
+ <h3>Menu</h3>
+
+ <div class="parentmenu" *ngIf="individualMenu?.length>=1;else elseblock">
+    
+    <div class="childmenu" *ngFor="let j of individualMenu">
+            <img class="menuimage"[src]="j.imageurl">
+            <div class="childmenu1">
+               <h4 class="menuItemname"> {{j.name}} </h4>
+                 <div class="childmenu2"> {{j.price}}</div>
+            </div>
+    </div>
+ </div>
+ <ng-template #elseblock> <p style="text-align: center;"> No Menu Items</p></ng-template>

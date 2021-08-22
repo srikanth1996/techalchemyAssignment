@@ -1,0 +1,9 @@
+<div class="body_container">
+  
+  <div [ngClass]="{ menu_bar_container: true, showMenuPanel: !showMenu }">
+    <app-menu-bar></app-menu-bar>
+  </div>
+  <div [ngClass]="{ main_container: true, showFullContainer: !showMenu }">
+    <app-headercomponent></app-headercomponent><router-outlet></router-outlet>
+  </div>
+</div>

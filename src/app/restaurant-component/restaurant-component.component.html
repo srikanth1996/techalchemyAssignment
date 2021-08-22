@@ -1,0 +1,115 @@
+<div id="supermain">
+<!-- <div class="headermain">
+  <div class="left-icon_div" (click)="showOrHideMenu()">
+    <img
+      class="arrow-left_img"
+      [src]="showMenu ? '../../assets/images/header/arrow left icon.png':'../../assets/images/header/nav close icon.png'"
+    />
+  </div>
+  <div class="header_right">
+    <div class="location">
+      <img src="../assets/Da Otto Icon.png" />
+      <select class="select" name="location">
+        <option value="Da Otto" default>Da Otto</option>
+      </select>
+    </div>
+
+    <div class="searchdiv">
+      <input
+      id="sampless"
+        class=" form-control"
+        type="text"
+        name="searchedData"
+        placeholder="Search for Restaurants (Press Enter to Search)"
+        (keydown.enter)="save($event)"
+      />{{ randomSearch }}
+      <button (click)="openFiter()"class="Filter">
+        <img class="buttonimg" src="../assets/sort2.png" />
+      </button>
+      <button class="cart">
+        <img class="buttonimg" src="../assets/cart.png" />
+        <div class="itemcount"></div>
+      </button>
+    </div>
+  </div>
+</div> -->
+
+<h3>Category</h3>
+<ul class="ulparent">
+  <li *ngFor="let j of restaurantCategoriesSet; let foundindex = index">
+    <div (click)="ShowCategoryItems(j)" class="divcontainer">
+      <img class="categoryimg" [src]="sampleimg[foundindex]" />
+    </div>
+    <a (click)="ShowCategoryItems(j)"> {{ j }}</a>
+  </li>
+</ul>
+<h3>Restaurants </h3>
+<div *ngIf="RestaurantsData;else elseBlock"class="parent">
+  <div (click)="goToRestaurantItem(i)"
+    class="child"
+    *ngFor="let i of RestaurantsData |restaurantCategory: selectedcateogeory: (enableFilter ? 'Open':''):cuisonesSelected:SearchedData"
+  >
+    <img class="containerimg" [src]="i.restaurantImage" />
+    <!-- <h4 class="heading">   {{i.restaurantName}}  </h4> -->
+    <div class="rowcontent">
+      <h4 class="heading">{{ i.restaurantName }}</h4>
+      <div>
+        <div
+          class="status"
+          [ngStyle]="
+            i.isOpen
+              ? {
+                  'background-color': 'rgba(80, 62, 157, 0.1)',
+                  color: '#503E9D'
+                }
+              : {
+                  'background-color': 'rgba(251, 109, 58, 0.1)',
+                  color: '#FB6D3A'
+                  
+                }
+          "
+        >
+          {{ i.isOpen ? "Open Now" : "Closed" }}</div
+        >
+      </div>
+    </div>
+    <p>{{ i.restaurantDescription |filterpipe }}</p>
+  </div>
+</div>
+<ng-template #elseBlock> <p style="text-align: center;">No Restaurants Found !!</p></ng-template>
+</div>
+
+<div id="mySidepanel" class="sidepanel">
+  <div class="filterchild">
+  <h4 class="filterHeader">Search Filters</h4><div><a  (click)="closeNavbar()">×</a></div>
+  
+</div>
+
+<div class="sortchild">
+<h4 class="filterHeader">Sort By</h4>
+<div class="parentsort"><div class="openfilter"><img class="fireimage"src="../assets/fire.png"></div><h4 (click)="gotoFIlterByOpen($event)"class="openfilterheader">Open</h4></div>
+</div>
+
+
+ <div class="cuisinefilter">
+
+  <h4 class="filterHeader">Cuisine</h4>
+  <div class="parentcusineitems">
+  <div class="cuisineitems" *ngFor="let cusine of restaurantCusinesSet;let selectedCusineIndex=index"> <span (click)="goTOslectedIten($event)"class="cusinescat">{{cusine}}</span></div>
+</div>
+ </div>
+  
+ <div>
+    <h4 style="color:#FB6D3A;font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+     margin-top:30px;
+     margin-left:44px">see more</h4>
+ </div>
+  
+
+   <button (click)="submittedFilters()"style="width: 80%;height:10%;margin-top:30px;
+   margin-left:44px; text-align: center;padding:4px 6px;background: #503E9D;border-radius: 12px;border:0px;color:#FFFFFF"> Apply filters </button>
+</div>
